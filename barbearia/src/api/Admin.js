@@ -3,9 +3,9 @@ const db = require('../config/db.json')
 module.exports = app => {
     const admins = db.admin
     const getAdmin = (req, res) => {
-        if (admins){
+        if (admins) {
             return res.send(admins)
-        }else{
+        } else {
             return res.status(404).send("Não encontrado.")
         }
     }
@@ -40,11 +40,11 @@ module.exports = app => {
         const currentAdmin = admins.filter(a => a.id == id)[0]
         const newAdmin = { "id": Number(id), ...req.body }
 
-        if (currentAdmin){
+        if (currentAdmin) {
             const index = admins.findIndex(a => a.id == id)
             admins.splice(index, 1, newAdmin)
             return res.send(newAdmin)
-        }else {
+        } else {
             return res.status(404).send("Admin não encontrado.")
         }
     }
@@ -53,11 +53,11 @@ module.exports = app => {
         const id = req.params.id
         const admin = admins.filter(a => a.id == id)[0]
 
-        if (admin){
+        if (admin) {
             const index = admins.findIndex(a => a.id == id)
             admins.splice(index, 1)
             return res.send(admin)
-        }else {
+        } else {
             return res.status(404).send("Admin não encontrado.")
         }
     }
